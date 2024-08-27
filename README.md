@@ -1,8 +1,8 @@
 # `backports.asyncio.queues`: Backport of the standard library module `asyncio.queues`
 
-Python 3.13 added a `shutdown` method to `asyncio.queue.Queue`. This package ports the feature to Python 3.9 through 3.12.
+Python 3.13 adds a `shutdown` method to `asyncio.queue.Queue`. This package ports the feature to Python 3.9 through 3.12.
 
-Consult the [https://docs.python.org/3.13/library/asyncio-queue.html#queue](3.13 specific documentation on Queue) for usage.
+Consult the [3.13 specific documentation on Queue](https://docs.python.org/3.13/library/asyncio-queue.html#queue) for usage.
 
 ## Installation and depending on this library
 
