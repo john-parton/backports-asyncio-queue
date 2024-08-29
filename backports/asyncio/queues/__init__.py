@@ -11,7 +11,14 @@ import warnings
 
 
 try:
-    from asyncio.queues import Queue, PriorityQueue, LifoQueue, QueueFull, QueueEmpty, QueueShutDown
+    from asyncio.queues import (
+        Queue,
+        PriorityQueue,
+        LifoQueue,
+        QueueFull,
+        QueueEmpty,
+        QueueShutDown,
+    )
 
     warnings.warn(
         "The 'backports.asyncio.queues' package does nothing on Python 3.13 and later. "

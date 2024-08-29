@@ -1,7 +1,11 @@
-
-from asyncio.queues import Queue as BaseQueue, PriorityQueue as BasePriorityQueue, LifoQueue as BaseLifoQueue
+from asyncio.queues import (
+    Queue as BaseQueue,
+    PriorityQueue as BasePriorityQueue,
+    LifoQueue as BaseLifoQueue,
+)
 
 from typing import Generic, TypeVar
+
 
 class QueueShutDown(Exception):
     """Raised when putting on to or getting from a shut-down Queue."""
@@ -11,18 +15,19 @@ class QueueShutDown(Exception):
 
 _T = TypeVar("_T")
 
+
 class _ShutDownMixin(Generic[_T]):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self._is_shutdown = False
-    
+
     def _format(self, *args, **kwargs) -> str:
         result = super()._format(*args, **kwargs)
         if self._is_shutdown:
             result += " shutdown"
         return result
-    
-    # Because the _is_shutdown conditional is inside a loop buried in the 
+
+    # Because the _is_shutdown conditional is inside a loop buried in the
     # method, the entire method is copied, and re-implemented.
     # Types will not be correctly inferred without annotations, which have
     # been provided here
@@ -62,7 +67,7 @@ class _ShutDownMixin(Generic[_T]):
             raise QueueShutDown
         super().put_nowait(item)
 
-    # Because the _is_shutdown conditional is inside a loop buried in the 
+    # Because the _is_shutdown conditional is inside a loop buried in the
     # method, the entire method is copied, and re-implemented.
     # Types will not be correctly inferred without annotations, which have
     # been provided here
@@ -130,7 +135,7 @@ class _ShutDownMixin(Generic[_T]):
             if not putter.done():
                 putter.set_result(None)
 
-    
+
 class Queue(_ShutDownMixin[_T], BaseQueue[_T]):
     pass
 
