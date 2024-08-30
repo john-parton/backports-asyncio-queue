@@ -1,6 +1,6 @@
 [project]
 name = "backports.asyncio.queues"
-version = "0.1.1"
+version = "0.1.2"
 description = "Backport python 3.13 asyncio Queue with shutdown."
 readme = "README.md"
 requires-python = ">=3.9"
